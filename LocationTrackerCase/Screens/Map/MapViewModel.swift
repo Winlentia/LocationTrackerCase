@@ -12,6 +12,7 @@ class MapViewModel {
     var firstLocation: CLLocation?
     var currentLocation: CLLocation?
     var addMarker: ((CLLocation) -> Void)?
+    let distanceBetweenMarksInMeter: Double = 20
     
     func locationUpdated(location: [CLLocation]) {
         currentLocation = location.last
@@ -21,7 +22,7 @@ class MapViewModel {
         guard let firstLoc = firstLocation, let currentLoc = currentLocation else {
             return
         }
-        if firstLoc.distance(from: currentLoc) >= 100 {
+        if firstLoc.distance(from: currentLoc) >= distanceBetweenMarksInMeter {
             firstLocation = currentLoc
             self.addMarker?(currentLoc)
         }
