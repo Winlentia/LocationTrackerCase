@@ -26,4 +26,13 @@ class MapViewModel {
             self.addMarker?(currentLoc)
         }
     }
+    
+//    func getLocationInfo(location: CLLocation) -> CLPlacemark {
+//        CLGeocoder().reverseGeocodeLocation(location) { placeMarks, err in
+//            guard let place = placeMarks?.last else {
+//                return CLPlacemark()
+//            }
+//            return place
+//        }
+//    }
 }

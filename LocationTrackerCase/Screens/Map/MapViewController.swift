@@ -34,11 +34,12 @@ class MapViewController: UIViewController {
     private func bindViewModel() {
         viewModel.addMarker = { [weak self] location in
             guard let self = self else { return }
-            let annotation = MKPointAnnotation()
-            let centerCoordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude:location.coordinate.longitude)
-            annotation.coordinate = centerCoordinate
-            annotation.title = "Title"
-            mapView.addAnnotation(annotation)
+//            let annotation = MKPointAnnotation()
+//            let centerCoordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude:location.coordinate.longitude)
+//            annotation.coordinate = centerCoordinate
+//            annotation.title = "Title"
+//            mapView.addAnnotation(annotation)
+            self.addAnnotation(location: location, mapView: self.mapView)
         }
     }
     
@@ -55,6 +56,23 @@ class MapViewController: UIViewController {
         locationManager.startUpdatingLocation()
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.showsBackgroundLocationIndicator = true
+    }
+    
+    private func addAnnotation(location: CLLocation, mapView: MKMapView) {
+        let annotation = MKPointAnnotation()
+        let centerCoordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude:location.coordinate.longitude)
+        annotation.coordinate = centerCoordinate
+//        annotation.title = "Title"
+        
+        CLGeocoder().reverseGeocodeLocation(location) { placeMarks, err in
+            if let _ = err {
+                annotation.title = "Unknown"
+                mapView.addAnnotation(annotation)
+            } else {
+                annotation.title = "\(placeMarks?.last?.name) \(placeMarks?.last?.thoroughfare)"
+                mapView.addAnnotation(annotation)
+            }
+        }
     }
 
 }
