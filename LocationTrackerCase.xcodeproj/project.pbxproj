@@ -13,8 +13,13 @@
 		78817E4D2C09CA9D0014A662 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78817E4B2C09CA9D0014A662 /* LaunchScreen.storyboard */; };
 		78817E582C09CC0F0014A662 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78817E572C09CC0F0014A662 /* MapViewModel.swift */; };
 		78817E5B2C09CD5E0014A662 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 78817E5A2C09CD5E0014A662 /* SnapKit */; };
-		78817E5D2C09CD5E0014A662 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 78817E5C2C09CD5E0014A662 /* SnapKit-Dynamic */; };
-		78817E602C09CE610014A662 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78817E5F2C09CE610014A662 /* LocationManager.swift */; };
+		78CA8AC92C0A31B3004D2169 /* LocationModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78CA8AC72C0A31B3004D2169 /* LocationModel.xcdatamodeld */; };
+		78CA8AD02C0A320F004D2169 /* PLocation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA8ACE2C0A320F004D2169 /* PLocation+CoreDataClass.swift */; };
+		78CA8AD12C0A320F004D2169 /* PLocation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA8ACF2C0A320F004D2169 /* PLocation+CoreDataProperties.swift */; };
+		78CA8AD42C0A3443004D2169 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA8AD32C0A3443004D2169 /* CoreDataManager.swift */; };
+		78CA8AEC2C0A56C5004D2169 /* DispatchQueue+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA8AEB2C0A56C5004D2169 /* DispatchQueue+Extensions.swift */; };
+		78CA8AEF2C0A573E004D2169 /* CustomMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA8AEE2C0A573E004D2169 /* CustomMapView.swift */; };
+		78CA8AF12C0A593F004D2169 /* LocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA8AF02C0A593F004D2169 /* LocationButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +30,13 @@
 		78817E4C2C09CA9D0014A662 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		78817E4E2C09CA9D0014A662 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78817E572C09CC0F0014A662 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
-		78817E5F2C09CE610014A662 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		78CA8AC82C0A31B3004D2169 /* LocationModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocationModel.xcdatamodel; sourceTree = "<group>"; };
+		78CA8ACE2C0A320F004D2169 /* PLocation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PLocation+CoreDataClass.swift"; sourceTree = "<group>"; };
+		78CA8ACF2C0A320F004D2169 /* PLocation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PLocation+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		78CA8AD32C0A3443004D2169 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		78CA8AEB2C0A56C5004D2169 /* DispatchQueue+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Extensions.swift"; sourceTree = "<group>"; };
+		78CA8AEE2C0A573E004D2169 /* CustomMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMapView.swift; sourceTree = "<group>"; };
+		78CA8AF02C0A593F004D2169 /* LocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,7 +45,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				78817E5B2C09CD5E0014A662 /* SnapKit in Frameworks */,
-				78817E5D2C09CD5E0014A662 /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +70,15 @@
 		78817E3F2C09CA9C0014A662 /* LocationTrackerCase */ = {
 			isa = PBXGroup;
 			children = (
+				78CA8AEA2C0A56BA004D2169 /* Extensions */,
+				78CA8ACB2C0A31EA004D2169 /* CoreData */,
 				78817E5E2C09CE580014A662 /* Helpers */,
 				78817E542C09CBF40014A662 /* Screens */,
 				78817E402C09CA9C0014A662 /* AppDelegate.swift */,
 				78817E492C09CA9D0014A662 /* Assets.xcassets */,
 				78817E4B2C09CA9D0014A662 /* LaunchScreen.storyboard */,
 				78817E4E2C09CA9D0014A662 /* Info.plist */,
+				78CA8AC72C0A31B3004D2169 /* LocationModel.xcdatamodeld */,
 			);
 			path = LocationTrackerCase;
 			sourceTree = "<group>";
@@ -81,6 +94,7 @@
 		78817E552C09CBF80014A662 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				78CA8AED2C0A5734004D2169 /* CustomViews */,
 				78817E442C09CA9C0014A662 /* MapViewController.swift */,
 				78817E572C09CC0F0014A662 /* MapViewModel.swift */,
 			);
@@ -90,9 +104,51 @@
 		78817E5E2C09CE580014A662 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				78817E5F2C09CE610014A662 /* LocationManager.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		78CA8ACB2C0A31EA004D2169 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				78CA8ACD2C0A31F0004D2169 /* Models */,
+				78CA8ACC2C0A31EC004D2169 /* Managers */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		78CA8ACC2C0A31EC004D2169 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				78CA8AD32C0A3443004D2169 /* CoreDataManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		78CA8ACD2C0A31F0004D2169 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				78CA8ACE2C0A320F004D2169 /* PLocation+CoreDataClass.swift */,
+				78CA8ACF2C0A320F004D2169 /* PLocation+CoreDataProperties.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		78CA8AEA2C0A56BA004D2169 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				78CA8AEB2C0A56C5004D2169 /* DispatchQueue+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		78CA8AED2C0A5734004D2169 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				78CA8AEE2C0A573E004D2169 /* CustomMapView.swift */,
+				78CA8AF02C0A593F004D2169 /* LocationButton.swift */,
+			);
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -113,7 +169,6 @@
 			name = LocationTrackerCase;
 			packageProductDependencies = (
 				78817E5A2C09CD5E0014A662 /* SnapKit */,
-				78817E5C2C09CD5E0014A662 /* SnapKit-Dynamic */,
 			);
 			productName = LocationTrackerCase;
 			productReference = 78817E3D2C09CA9C0014A662 /* LocationTrackerCase.app */;
@@ -172,9 +227,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78817E602C09CE610014A662 /* LocationManager.swift in Sources */,
 				78817E452C09CA9C0014A662 /* MapViewController.swift in Sources */,
+				78CA8AD02C0A320F004D2169 /* PLocation+CoreDataClass.swift in Sources */,
+				78CA8AEC2C0A56C5004D2169 /* DispatchQueue+Extensions.swift in Sources */,
+				78CA8AEF2C0A573E004D2169 /* CustomMapView.swift in Sources */,
+				78CA8AF12C0A593F004D2169 /* LocationButton.swift in Sources */,
+				78CA8AD12C0A320F004D2169 /* PLocation+CoreDataProperties.swift in Sources */,
 				78817E412C09CA9C0014A662 /* AppDelegate.swift in Sources */,
+				78CA8AC92C0A31B3004D2169 /* LocationModel.xcdatamodeld in Sources */,
+				78CA8AD42C0A3443004D2169 /* CoreDataManager.swift in Sources */,
 				78817E582C09CC0F0014A662 /* MapViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,12 +473,21 @@
 			package = 78817E592C09CD5E0014A662 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
-		78817E5C2C09CD5E0014A662 /* SnapKit-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 78817E592C09CD5E0014A662 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = "SnapKit-Dynamic";
-		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		78CA8AC72C0A31B3004D2169 /* LocationModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				78CA8AC82C0A31B3004D2169 /* LocationModel.xcdatamodel */,
+			);
+			currentVersion = 78CA8AC82C0A31B3004D2169 /* LocationModel.xcdatamodel */;
+			name = LocationModel.xcdatamodeld;
+			path = /Users/winlentia/Documents/projects/xcode/LocationTrackerCase/LocationTrackerCase/LocationModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 78817E352C09CA9C0014A662 /* Project object */;
 }

@@ -16,15 +16,23 @@ class MapViewController: UIViewController {
     
     let viewModel = MapViewModel()
     
-    lazy var mapView: MKMapView = {
-        let mapView = MKMapView()
+    lazy var mapView: CustomMapView = {
+        let mapView = CustomMapView()
         mapView.showsUserLocation = true
-        self.view.addSubview(mapView)
+        view.addSubview(mapView)
         return mapView
+    }()
+    
+    lazy var showCurrentLocationButton: LocationButton = {
+        let button = LocationButton()
+        view.addSubview(button)
+        button.addTarget(self, action: #selector(showCurrentLocationPressed), for: .touchUpInside)
+        return button
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        controlDbMarksAndPinThem()
         setupLocationManager()
         setupUI()
         bindViewModel()
@@ -34,18 +42,28 @@ class MapViewController: UIViewController {
     private func bindViewModel() {
         viewModel.addMarker = { [weak self] location in
             guard let self = self else { return }
-//            let annotation = MKPointAnnotation()
-//            let centerCoordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude:location.coordinate.longitude)
-//            annotation.coordinate = centerCoordinate
-//            annotation.title = "Title"
-//            mapView.addAnnotation(annotation)
-            self.addAnnotation(location: location, mapView: self.mapView)
+            mapView.addAnnotation(location: location)
         }
     }
     
     private func setupUI() {
         mapView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        
+        showCurrentLocationButton.snp.makeConstraints { make in
+            make.right.equalToSuperview().offset(-20)
+            make.bottom.equalToSuperview().offset(-50)
+            make.width.equalTo(50)
+            make.height.equalTo(50)
+        }
+        
+    }
+    
+    private func controlDbMarksAndPinThem() {
+        let locations = viewModel.controlCoreDataForMarks()
+        for item in locations {
+            mapView.addAnnotation(location: item)
         }
     }
     
@@ -58,32 +76,22 @@ class MapViewController: UIViewController {
         locationManager.showsBackgroundLocationIndicator = true
     }
     
-    private func addAnnotation(location: CLLocation, mapView: MKMapView) {
-        let annotation = MKPointAnnotation()
-        let centerCoordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude:location.coordinate.longitude)
-        annotation.coordinate = centerCoordinate
-//        annotation.title = "Title"
-        
-        CLGeocoder().reverseGeocodeLocation(location) { placeMarks, err in
-            if let _ = err {
-                annotation.title = "Unknown"
-                mapView.addAnnotation(annotation)
-            } else {
-                annotation.title = "\(placeMarks?.last?.name) \(placeMarks?.last?.thoroughfare)"
-                mapView.addAnnotation(annotation)
-            }
+    @objc func showCurrentLocationPressed() {
+        guard let location = viewModel.currentLocation else {
+            return
         }
+        mapView.focusTo(location: location)
     }
 
 }
 
 extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.last{
+        if let location = locations.last {
             viewModel.locationUpdated(location: locations)
-            let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001))
-            mapView.setRegion(region, animated: true)
+            DispatchQueue.once {
+                mapView.focusTo(location: location)
+            }
         }
         
     }

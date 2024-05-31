@@ -14,6 +14,10 @@ class MapViewModel {
     var addMarker: ((CLLocation) -> Void)?
     let distanceBetweenMarksInMeter: Double = 20
     
+    func controlCoreDataForMarks() -> [CLLocation] {
+        return CoreDataManager.shared.getAllPLocations().map({$0.pLocationToCLLocation()})
+    }
+    
     func locationUpdated(location: [CLLocation]) {
         currentLocation = location.last
         if firstLocation == nil {
@@ -24,6 +28,7 @@ class MapViewModel {
         }
         if firstLoc.distance(from: currentLoc) >= distanceBetweenMarksInMeter {
             firstLocation = currentLoc
+            CoreDataManager.shared.createPLocation(latitude: currentLoc.coordinate.latitude, longitude: currentLoc.coordinate.longitude)
             self.addMarker?(currentLoc)
         }
     }
