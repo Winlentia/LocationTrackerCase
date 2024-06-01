@@ -14,16 +14,6 @@ class CustomMapView: MKMapView {
         let centerCoordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude:location.coordinate.longitude)
         annotation.coordinate = centerCoordinate
         addAnnotation(annotation)
-        
-//        CLGeocoder().reverseGeocodeLocation(location) { placeMarks, err in
-//            if let _ = err {
-//                annotation.title = "Unknown"
-//                self.addAnnotation(annotation)
-//            } else {
-//                annotation.title = "\(placeMarks?.last?.name) \(placeMarks?.last?.thoroughfare)"
-//                self.addAnnotation(annotation)
-//            }
-//        }
     }
     
     func focusTo(location: CLLocation) {
@@ -40,7 +30,6 @@ class CustomMapView: MKMapView {
             if let _ = err {
                 title = "Unknown"
             } else {
-                print(placeMarks?.last)
                 if let name = placeMarks?.last?.name,
                 let thoroughfare = placeMarks?.last?.thoroughfare {
                     title = "\(name) \n \(thoroughfare)"
