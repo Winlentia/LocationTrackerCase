@@ -29,6 +29,28 @@ class MapViewController: UIViewController {
         button.addTarget(self, action: #selector(showCurrentLocationPressed), for: .touchUpInside)
         return button
     }()
+    
+    lazy var trackButton: TrackButton = {
+        let button = TrackButton()
+        button.addTarget(self, action: #selector(trackButtonPressed), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var resetPinsButton: RoundedButton = {
+        let button = RoundedButton()
+        button.setTitle("Reset Pins", for: .normal)
+        button.addTarget(self, action: #selector(resetPinsButtonPressed), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var buttonsStackView: UIStackView = {
+        let stackView = UIStackView()
+        view.addSubview(stackView)
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.spacing = 8
+        return stackView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,20 +66,35 @@ class MapViewController: UIViewController {
             guard let self = self else { return }
             mapView.addAnnotation(location: location)
         }
+        
+        viewModel.removeAllMarkers = { [weak self] in
+            guard let self = self else { return }
+            mapView.removeAllAnnotations()
+        }
     }
     
     private func setupUI() {
+        navigationController?.navigationBar.isHidden = true
         mapView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
         showCurrentLocationButton.snp.makeConstraints { make in
-            make.right.equalToSuperview().offset(-20)
-            make.bottom.equalToSuperview().offset(-50)
+            make.right.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(50)
             make.width.equalTo(50)
             make.height.equalTo(50)
         }
         
+        buttonsStackView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(80)
+            make.left.equalToSuperview().inset(20)
+            make.width.equalTo(150)
+            make.height.equalTo(70)
+        }
+        buttonsStackView.addArrangedSubview(trackButton)
+        buttonsStackView.addArrangedSubview(resetPinsButton)
+
     }
     
     private func controlDbMarksAndPinThem() {
@@ -81,6 +118,15 @@ class MapViewController: UIViewController {
             return
         }
         mapView.focusTo(location: location)
+    }
+    
+    @objc func trackButtonPressed() {
+        trackButton.isTrackingActive.toggle()
+        viewModel.isTrackingActive = trackButton.isTrackingActive
+    }
+    
+    @objc func resetPinsButtonPressed() {
+        viewModel.resetMarkers()
     }
 
 }

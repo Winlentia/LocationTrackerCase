@@ -9,10 +9,12 @@ import Foundation
 import CoreLocation
 
 class MapViewModel {
+    var addMarker: ((CLLocation) -> Void)?
+    var removeAllMarkers: (() -> Void)?
     var firstLocation: CLLocation?
     var currentLocation: CLLocation?
-    var addMarker: ((CLLocation) -> Void)?
     let distanceBetweenMarksInMeter: Double = 20
+    var isTrackingActive: Bool = true
     
     func controlCoreDataForMarks() -> [CLLocation] {
         return CoreDataManager.shared.getAllPLocations().map({$0.pLocationToCLLocation()})
@@ -20,6 +22,10 @@ class MapViewModel {
     
     func locationUpdated(location: [CLLocation]) {
         currentLocation = location.last
+        if !isTrackingActive {
+            firstLocation = nil
+            return
+        }
         if firstLocation == nil {
             firstLocation = location.last
         }
@@ -31,6 +37,11 @@ class MapViewModel {
             CoreDataManager.shared.createPLocation(latitude: currentLoc.coordinate.latitude, longitude: currentLoc.coordinate.longitude)
             self.addMarker?(currentLoc)
         }
+    }
+    
+    func resetMarkers() {
+        CoreDataManager.shared.deleteAllPlocations()
+        removeAllMarkers?()
     }
     
 //    func getLocationInfo(location: CLLocation) -> CLPlacemark {

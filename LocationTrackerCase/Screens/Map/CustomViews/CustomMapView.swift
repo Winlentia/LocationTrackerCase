@@ -30,4 +30,8 @@ class CustomMapView: MKMapView {
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001))
         self.setRegion(region, animated: true)
     }
+    
+    func removeAllAnnotations() {
+        removeAnnotations(self.annotations)
+    }
 }
