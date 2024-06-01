@@ -19,6 +19,7 @@ class MapViewController: UIViewController {
     lazy var mapView: CustomMapView = {
         let mapView = CustomMapView()
         mapView.showsUserLocation = true
+        mapView.delegate = self
         view.addSubview(mapView)
         return mapView
     }()
@@ -155,17 +156,30 @@ extension MapViewController: CLLocationManagerDelegate {
             print("Restricted by parental control")
         case .denied:
             print("When user select option Dont't Allow")
-        // 1
         case .authorizedAlways:
             print("When user select option Change to Always Allow")
-        locationManager.startUpdatingLocation()
+            locationManager.startUpdatingLocation()
         case .authorizedWhenInUse:
             print("When user select option Allow While Using App or Allow Once")
             locationManager.startUpdatingLocation()
-            // 2
         default:
             print("default")
         }
     }
 }
 
+extension MapViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        self.mapView.addCustomAnnotationView(view: view)
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        let customViews = view.subviews.filter({ view in
+            view.tag == 99
+        })
+        for customView in customViews {
+            customView.removeFromSuperview()
+        }
+    }
+   
+}

@@ -11,6 +11,7 @@ import CoreLocation
 class MapViewModel {
     var addMarker: ((CLLocation) -> Void)?
     var removeAllMarkers: (() -> Void)?
+    
     var firstLocation: CLLocation?
     var currentLocation: CLLocation?
     let distanceBetweenMarksInMeter: Double = 20

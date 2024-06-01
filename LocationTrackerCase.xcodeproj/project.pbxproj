@@ -22,6 +22,7 @@
 		78CA8AF12C0A593F004D2169 /* LocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA8AF02C0A593F004D2169 /* LocationButton.swift */; };
 		78CA8AF42C0A6A77004D2169 /* TrackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA8AF32C0A6A77004D2169 /* TrackButton.swift */; };
 		78CA8AF62C0A6FC4004D2169 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA8AF52C0A6FC4004D2169 /* RoundedButton.swift */; };
+		78CA8B272C0B8D6C004D2169 /* AnnotationPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA8B262C0B8D6C004D2169 /* AnnotationPopupView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		78CA8AF02C0A593F004D2169 /* LocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationButton.swift; sourceTree = "<group>"; };
 		78CA8AF32C0A6A77004D2169 /* TrackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackButton.swift; sourceTree = "<group>"; };
 		78CA8AF52C0A6FC4004D2169 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		78CA8B262C0B8D6C004D2169 /* AnnotationPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationPopupView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 				78CA8AF02C0A593F004D2169 /* LocationButton.swift */,
 				78CA8AF32C0A6A77004D2169 /* TrackButton.swift */,
 				78CA8AF52C0A6FC4004D2169 /* RoundedButton.swift */,
+				78CA8B262C0B8D6C004D2169 /* AnnotationPopupView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				78CA8AEC2C0A56C5004D2169 /* DispatchQueue+Extensions.swift in Sources */,
 				78CA8AEF2C0A573E004D2169 /* CustomMapView.swift in Sources */,
 				78CA8AF12C0A593F004D2169 /* LocationButton.swift in Sources */,
+				78CA8B272C0B8D6C004D2169 /* AnnotationPopupView.swift in Sources */,
 				78CA8AD12C0A320F004D2169 /* PLocation+CoreDataProperties.swift in Sources */,
 				78817E412C09CA9C0014A662 /* AppDelegate.swift in Sources */,
 				78CA8AF62C0A6FC4004D2169 /* RoundedButton.swift in Sources */,
