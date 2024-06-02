@@ -14,7 +14,7 @@ final class MapViewModel {
     
     var firstLocation: CLLocation?
     var currentLocation: CLLocation?
-    let distanceBetweenMarksInMeter: Double = 20
+    let distanceBetweenMarksInMeter: Double = 100
     var isTrackingActive: Bool = true
     
     func controlCoreDataForMarks() -> [CLLocation] {

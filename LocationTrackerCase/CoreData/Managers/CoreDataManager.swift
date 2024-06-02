@@ -12,7 +12,6 @@ class CoreDataManager {
     static let shared = CoreDataManager()
     
     lazy var persistentContainer: NSPersistentContainer = {
-        
         let container = NSPersistentContainer(name: "LocationModel")
         container.loadPersistentStores { storeDescription, error in
             if let error = error as? NSError {

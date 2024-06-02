@@ -4,16 +4,13 @@
 //
 //  Created by Winlentia on 31.05.2024.
 //
-
 import UIKit
 import MapKit
 import SnapKit
 import CoreLocation
 
 final class MapViewController: UIViewController {
-    
     let locationManager = CLLocationManager()
-    
     let viewModel = MapViewModel()
     
     lazy var mapView: CustomMapView = {
@@ -98,7 +95,6 @@ final class MapViewController: UIViewController {
         }
         buttonsStackView.addArrangedSubview(trackButton)
         buttonsStackView.addArrangedSubview(resetPinsButton)
-
     }
     
     private func controlDbMarksAndPinThem() {
@@ -132,7 +128,6 @@ final class MapViewController: UIViewController {
     @objc func resetPinsButtonPressed() {
         viewModel.resetMarkers()
     }
-
 }
 
 extension MapViewController: CLLocationManagerDelegate {
@@ -143,7 +138,6 @@ extension MapViewController: CLLocationManagerDelegate {
                 mapView.focusTo(location: location)
             }
         }
-        
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -178,5 +172,4 @@ extension MapViewController: MKMapViewDelegate {
             customView.removeFromSuperview()
         }
     }
-   
 }
