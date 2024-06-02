@@ -1,0 +1,5 @@
+- MVVM Architecture
+- For every 100 meter new pins added to map
+- Background location tracking
+- CoreData ( save pins )
+- ProgrammaticUI (snapkit)
