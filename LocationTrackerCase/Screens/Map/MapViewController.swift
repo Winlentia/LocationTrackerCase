@@ -10,7 +10,7 @@ import MapKit
 import SnapKit
 import CoreLocation
 
-class MapViewController: UIViewController {
+final class MapViewController: UIViewController {
     
     let locationManager = CLLocationManager()
     
@@ -56,10 +56,13 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         controlDbMarksAndPinThem()
-        setupLocationManager()
         setupUI()
         bindViewModel()
         view.backgroundColor = .yellow
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupLocationManager()
     }
     
     private func bindViewModel() {
@@ -107,8 +110,8 @@ class MapViewController: UIViewController {
     
     private func setupLocationManager() {
         locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.showsBackgroundLocationIndicator = true
@@ -151,19 +154,13 @@ extension MapViewController: CLLocationManagerDelegate {
         
         switch status {
         case .notDetermined:
-            print("When user did not yet determined")
-        case .restricted:
-            print("Restricted by parental control")
-        case .denied:
-            print("When user select option Dont't Allow")
-        case .authorizedAlways:
-            print("When user select option Change to Always Allow")
-            locationManager.startUpdatingLocation()
-        case .authorizedWhenInUse:
-            print("When user select option Allow While Using App or Allow Once")
+            manager.requestAlwaysAuthorization()
+        case .restricted, .denied:
+            AlertManager.presentLocationPermissionAlert()
+        case .authorizedAlways,.authorizedWhenInUse:
             locationManager.startUpdatingLocation()
         default:
-            print("default")
+            AlertManager.presentLocationPermissionAlert()
         }
     }
 }

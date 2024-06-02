@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-class MapViewModel {
+final class MapViewModel {
     var addMarker: ((CLLocation) -> Void)?
     var removeAllMarkers: (() -> Void)?
     
@@ -44,13 +44,4 @@ class MapViewModel {
         CoreDataManager.shared.deleteAllPlocations()
         removeAllMarkers?()
     }
-    
-//    func getLocationInfo(location: CLLocation) -> CLPlacemark {
-//        CLGeocoder().reverseGeocodeLocation(location) { placeMarks, err in
-//            guard let place = placeMarks?.last else {
-//                return CLPlacemark()
-//            }
-//            return place
-//        }
-//    }
 }

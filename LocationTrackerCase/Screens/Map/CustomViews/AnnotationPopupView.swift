@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class AnnotationPopupView: UIView {
+final class AnnotationPopupView: UIView {
     lazy var label: UILabel = {
         let label = UILabel()
         addSubview(label)

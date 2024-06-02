@@ -8,7 +8,10 @@
 import Foundation
 import MapKit
 
-class CustomMapView: MKMapView {
+final class CustomMapView: MKMapView {
+    
+    let viewModel = CustomMapViewModel()
+    
     func addAnnotation(location: CLLocation) {
         let annotation = MKPointAnnotation()
         let centerCoordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude:location.coordinate.longitude)
@@ -25,21 +28,12 @@ class CustomMapView: MKMapView {
     func addCustomAnnotationView(view: MKAnnotationView) {
         guard let latitude = view.annotation?.coordinate.latitude, let longitude = view.annotation?.coordinate.longitude else { return }
         let location = CLLocation(latitude: latitude, longitude: longitude)
-        CLGeocoder().reverseGeocodeLocation(location) { placeMarks, err in
-            var title = ""
-            if let _ = err {
-                title = "Unknown"
-            } else {
-                if let name = placeMarks?.last?.name,
-                let thoroughfare = placeMarks?.last?.thoroughfare {
-                    title = "\(name) \n \(thoroughfare)"
-                }
-            }
-            
+        CLGeocoder().reverseGeocodeLocation(location) {[weak self] placeMarks, err in
+            guard let self = self else { return }
             let customView = AnnotationPopupView()
             
             view.addSubview(customView)
-            customView.label.text = title
+            customView.label.text = self.viewModel.generateLocationTitle(placeMaker: placeMarks?.last, error: err)
             
             customView.snp.makeConstraints { make in
                 make.bottom.equalTo(view.snp.bottom).inset(80)

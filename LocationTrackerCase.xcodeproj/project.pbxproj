@@ -23,6 +23,9 @@
 		78CA8AF42C0A6A77004D2169 /* TrackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA8AF32C0A6A77004D2169 /* TrackButton.swift */; };
 		78CA8AF62C0A6FC4004D2169 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA8AF52C0A6FC4004D2169 /* RoundedButton.swift */; };
 		78CA8B272C0B8D6C004D2169 /* AnnotationPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA8B262C0B8D6C004D2169 /* AnnotationPopupView.swift */; };
+		78CA8B2F2C0C5121004D2169 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA8B2E2C0C5121004D2169 /* AlertManager.swift */; };
+		78CA8B312C0C553B004D2169 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA8B302C0C553B004D2169 /* UIApplication+Extensions.swift */; };
+		78CA8B342C0C658F004D2169 /* CustomMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA8B332C0C658F004D2169 /* CustomMapViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +46,9 @@
 		78CA8AF32C0A6A77004D2169 /* TrackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackButton.swift; sourceTree = "<group>"; };
 		78CA8AF52C0A6FC4004D2169 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		78CA8B262C0B8D6C004D2169 /* AnnotationPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationPopupView.swift; sourceTree = "<group>"; };
+		78CA8B2E2C0C5121004D2169 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		78CA8B302C0C553B004D2169 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
+		78CA8B332C0C658F004D2169 /* CustomMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMapViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +116,7 @@
 		78817E5E2C09CE580014A662 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				78CA8B2E2C0C5121004D2169 /* AlertManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -144,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				78CA8AEB2C0A56C5004D2169 /* DispatchQueue+Extensions.swift */,
+				78CA8B302C0C553B004D2169 /* UIApplication+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -151,13 +159,22 @@
 		78CA8AED2C0A5734004D2169 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				78CA8AEE2C0A573E004D2169 /* CustomMapView.swift */,
+				78CA8B322C0C657D004D2169 /* CustomMapView */,
 				78CA8AF02C0A593F004D2169 /* LocationButton.swift */,
 				78CA8AF32C0A6A77004D2169 /* TrackButton.swift */,
 				78CA8AF52C0A6FC4004D2169 /* RoundedButton.swift */,
 				78CA8B262C0B8D6C004D2169 /* AnnotationPopupView.swift */,
 			);
 			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		78CA8B322C0C657D004D2169 /* CustomMapView */ = {
+			isa = PBXGroup;
+			children = (
+				78CA8AEE2C0A573E004D2169 /* CustomMapView.swift */,
+				78CA8B332C0C658F004D2169 /* CustomMapViewModel.swift */,
+			);
+			path = CustomMapView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,13 +258,16 @@
 				78CA8AEC2C0A56C5004D2169 /* DispatchQueue+Extensions.swift in Sources */,
 				78CA8AEF2C0A573E004D2169 /* CustomMapView.swift in Sources */,
 				78CA8AF12C0A593F004D2169 /* LocationButton.swift in Sources */,
+				78CA8B312C0C553B004D2169 /* UIApplication+Extensions.swift in Sources */,
 				78CA8B272C0B8D6C004D2169 /* AnnotationPopupView.swift in Sources */,
 				78CA8AD12C0A320F004D2169 /* PLocation+CoreDataProperties.swift in Sources */,
+				78CA8B342C0C658F004D2169 /* CustomMapViewModel.swift in Sources */,
 				78817E412C09CA9C0014A662 /* AppDelegate.swift in Sources */,
 				78CA8AF62C0A6FC4004D2169 /* RoundedButton.swift in Sources */,
 				78CA8AC92C0A31B3004D2169 /* LocationModel.xcdatamodeld in Sources */,
 				78CA8AF42C0A6A77004D2169 /* TrackButton.swift in Sources */,
 				78CA8AD42C0A3443004D2169 /* CoreDataManager.swift in Sources */,
+				78CA8B2F2C0C5121004D2169 /* AlertManager.swift in Sources */,
 				78817E582C09CC0F0014A662 /* MapViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

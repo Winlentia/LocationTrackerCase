@@ -61,15 +61,11 @@ class CoreDataManager {
     }
     
     func deleteAllPlocations() {
-//        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "PLocation")
-//        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: PLocation.fetchRequest())
-
         do {
             try context.execute(deleteRequest)
         } catch let error as NSError {
             print(error)
         }
     }
-    
 }
